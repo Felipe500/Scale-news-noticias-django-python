@@ -1,0 +1,107 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+<div class="card" xmlns="http://www.w3.org/1999/html">
+      <h5 class="card-header">Inicio > {% for categoria in Pos.categories.all %}{{ categoria }}<br/>{% endfor %}</h5>
+      <div class="card-body">
+            <h3 class="card-title">{{ Pos.titulo }}</h3>
+          <h5 class="card-subtitle">{{ Pos.subtitulo }}</h5>
+        <p class="card-text">{{Pos.content|safe }}</p>
+
+            <img  class="card-img-bottom" src="{{ Pos.image_file.url }}" id="img" alt="Card image cap">
+      </div>
+</div>
+
+
+          <HR>
+         <a href="#" class="btn btn-primary">Ver na fonte original</a>
+            <div CLASS="container">
+                <HR>
+                <h3>Faça seu comentário:</h3>
+
+
+
+                      {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}>
+                        <div class="alert alert-success" role="alert">
+                               {{ message }}
+                         </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                   <!--Comment Area-->
+
+
+
+                <form class="row g-3" method="post" action="{% url 'enviar_comentario' Pos.id %} " >
+                    {% csrf_token %}
+                  <div class="col-md-6">
+                    <label for="entrada_nome" class="form-label">Seu Nome</label>
+                    <input type="text" class="form-control" name="entrada_nome" id="entrada_nome"  placeholder="Seu nome...">
+                  </div>
+                    <div class="col-12">
+                        <label for="entrada_email" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="entrada_email" id="entrada_email" placeholder="Seu email...">
+                    </div>
+
+                  <div class="col-12">
+                    <label for="entrada_comentario" class="form-label">Comentário</label>
+                    <input type="text" class="form-control" name="entrada_comentario" id="entrada_comentario" placeholder="Comente aqui..">
+                  </div>
+                   <HR>
+                  <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                  </div>
+                </form>
+
+
+
+
+            </div>
+
+            <HR>
+            <div class="card">
+
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="text-center "> Comentários </h3>
+                        <div class="row">
+                             {% for comentario in Comentarios %}
+                            <div class="col-md-12">
+
+
+                                <div class="media mt-4"> <img class="mr-3 rounded-circle" alt="Bootstrap Media Preview" src="{{comentario.image_url}}" />
+                                    <div class="media-body">
+                                        <div class="row">
+
+                                            <div class="col-8 d-flex">
+                                                <h5 ><b>{{comentario.nome_user}}</h5> </b><span> &nbsp;- </span>
+                                            </div>
+                                            <p style="font-size:13px">{{comentario.date}}</p>
+                                            <div class="col-4">
+                                                <div class="pull-right reply"> <a href="#"><span></span></a> </div>
+                                            </div>
+                                        </div>
+                                        {{comentario}}.
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>{% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

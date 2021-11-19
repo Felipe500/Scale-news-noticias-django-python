@@ -1,0 +1,44 @@
+{% load static %}
+
+<style>
+  .hello-msg{
+    font-size: 18px;
+    color: #fff;
+    margin-right: 20px;
+  }
+</style>
+<div class="container">
+    <img class="img-fluid" src="{% static '/imagem/logo.png' %}">
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="{% url 'home' %}">Inicio</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+
+
+         {% for categoria in categorias %}
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'Filtro_Categoria' categoria.id %}">{{ categoria }}</a>
+        </li>
+
+         {% endfor %}
+
+
+
+      </ul>
+
+
+
+
+    </div>
+  </div>
+
+
+
+</nav>

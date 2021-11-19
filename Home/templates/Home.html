@@ -1,0 +1,33 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+<div class="jumbotron">
+            <h1>Principais noticias</h1>
+
+
+                {% for postagem in postagens %}
+                   <div class="card">
+                          <div class="card-body">
+                            <a href="{% url 'ver_postagem' postagem.id %}">
+                            <h4 class="card-title" style="color:red">  {{ postagem.titulo }}</h4>
+                            <h6 class="card-text">{{ postagem.subtitulo }}</h6>
+                            <p class="card-text"><small class="text-muted">Categoria:
+                                {% for categoria in postagem.categories.all %}
+                                {{ categoria }}
+                                {% endfor %}<br>
+                                Fonte: &nbsp;{{ postagem.fonte_original }}
+                            </small></p>
+                                <p class="card-text"></p>
+                          </div></a>
+
+
+                    </div>
+
+                {% endfor %}
+
+
+
+
+
+    </div>
+{% endblock %}
