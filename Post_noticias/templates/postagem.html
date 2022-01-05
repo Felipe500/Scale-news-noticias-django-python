@@ -2,7 +2,7 @@
 {% load static %}
 {% block conteudo %}
 <div class="card" xmlns="http://www.w3.org/1999/html">
-      <h5 class="card-header">Inicio > {% for categoria in Pos.categories.all %}{{ categoria }}<br/>{% endfor %}</h5>
+      <h5 class="card-header">Inicio > {{ Pos.categories.all|join:", " }}<br/></h5>
       <div class="card-body">
             <h3 class="card-title">{{ Pos.titulo }}</h3>
           <h5 class="card-subtitle">{{ Pos.subtitulo }}</h5>
@@ -22,15 +22,15 @@
 
 
                       {% if messages %}
-                    <ul class="messages">
+
                         {% for message in messages %}
-                        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}>
+
                         <div class="alert alert-success" role="alert">
                                {{ message }}
                          </div>
-                        </li>
+
                         {% endfor %}
-                    </ul>
+
                     {% endif %}
                    <!--Comment Area-->
 

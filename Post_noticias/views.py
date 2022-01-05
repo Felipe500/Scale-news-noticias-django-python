@@ -8,18 +8,18 @@ import datetime
 
 
 def Postagens(request,id):
-
+    
     categorias = Categoria.objects.all()
     Pos = Postagem.objects.get(id=id)
     Comentarios = Comentario.objects.filter(postagem_id=id)
-    print("comentarios ",Comentarios)
-    total_categorias = categorias.count()
+    #print("comentarios ",Comentarios)
+    #total_categorias = categorias.count()
 
 
     context = {
         "Pos": Pos,
         "categorias": categorias,
-        "num_categories": total_categorias,
+       # "num_categories": total_categorias,
         "title": "Meus foruns",
         "Comentarios":Comentarios
     }

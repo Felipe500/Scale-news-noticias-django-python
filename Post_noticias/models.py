@@ -3,7 +3,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from hitcount.models import HitCountMixin, HitCount
 from ckeditor.fields import RichTextField
 from user_perfil.models import Perfil_Usuario
-
+from django.utils.text import slugify
 
 
 class Categoria(models.Model):
@@ -43,4 +43,7 @@ class Postagem(models.Model):
     def __str__(self):
         return self.titulo
 
-
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.titulo)
+        return super().save(*args, **kwargs)
