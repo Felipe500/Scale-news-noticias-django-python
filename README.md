@@ -5,10 +5,11 @@ Um site de noticias desenvolvido com python e django no back-end e bootstrap no 
       
           . configure.sh
           
-#Home
+# Home
+
 ![alt text](https://github.com/Felipe500/Scale-news-noticias-django-python/blob/main/screen.png?raw=true)
 
-#Comentários
+# Comentários
 ![alt text](https://github.com/Felipe500/Scale-news-noticias-django-python/blob/main/screen2.png?raw=true)
 
 
